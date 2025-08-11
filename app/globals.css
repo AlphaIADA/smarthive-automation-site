@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 17 24 39; /* slate-900 */
+}
+
+html, body, #__next { height: 100%; }
+body { color: rgb(var(--fg)); background: rgb(var(--bg)); }
+a { @apply text-blue-600 hover:underline; }
+.card { @apply rounded-2xl shadow-lg p-6 bg-white border border-gray-100; }
+.btn { @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium border border-transparent bg-gray-900 text-white hover:bg-gray-800; }
+.btn-outline { @apply inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium border border-gray-200 hover:border-gray-300; }
+input, select { @apply px-3 py-2 rounded-xl border border-gray-300 w-full; }
+label { @apply text-sm font-medium text-gray-700; }
