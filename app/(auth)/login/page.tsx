@@ -1,23 +1,24 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
 
-export default function LoginPage() {
+function LoginForm() {
   const params = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    const res = await signIn("credentials", { email, password, redirect: true, callbackUrl: "/dashboard" });
-    // next-auth handles redirect on success; on error it returns null
-    if (!res) setError("Invalid credentials");
+    const res = await signIn("credentials", { email, password, redirect: false, redirectTo: "/dashboard" });
+    if (res?.error) setError("Invalid credentials");
+    else router.push(res?.url || "/dashboard");
     setLoading(false);
   };
 
@@ -41,5 +42,13 @@ export default function LoginPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="container max-w-md py-10"><div className="card text-sm text-gray-500">Loading sign in...</div></div>}>
+      <LoginForm />
+    </Suspense>
   );
 }

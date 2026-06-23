@@ -13,10 +13,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
-        const user = await prisma.user.findUnique({ where: { email: credentials.email } });
-        if (!user) return null;
-        const ok = await bcrypt.compare(credentials.password, user.password);
+        const email = typeof credentials?.email === "string" ? credentials.email.trim() : "";
+        const password = typeof credentials?.password === "string" ? credentials.password : "";
+        if (!email || !password) return null;
+        const emailLower = email.toLowerCase();
+        const user = await prisma.user.findFirst({
+          where: {
+            OR: [
+              { emailLower },
+              { email: { equals: email, mode: "insensitive" } },
+            ],
+          },
+        });
+        if (!user?.password) return null;
+        const ok = await bcrypt.compare(password, user.password);
         if (!ok) return null;
         return { id: user.id, email: user.email, name: user.name, role: user.role };
       }
@@ -24,12 +34,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.role = (user as any).role || "USER";
+      if (user) {
+        token.role = "role" in user && typeof user.role === "string" ? user.role : "USER";
+      }
       return token;
     },
     async session({ session, token }) {
-      (session as any).role = token.role;
-      return session;
+      const sessionWithRole = session as typeof session & { role?: string };
+      sessionWithRole.role = typeof token.role === "string" ? token.role : "USER";
+      return sessionWithRole;
     }
   },
   pages: {

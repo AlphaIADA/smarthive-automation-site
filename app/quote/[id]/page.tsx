@@ -1,8 +1,9 @@
 import { prisma } from "@/lib/prisma";
 
-export default async function QuoteView({ params }: { params: { id: string } }) {
+export default async function QuoteView({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const quote = await prisma.quote.findUnique({
-    where: { id: params.id },
+    where: { id },
     include: { items: { include: { device: true } } }
   });
   if (!quote) return <div className="container py-10">Quote not found.</div>;
@@ -11,7 +12,7 @@ export default async function QuoteView({ params }: { params: { id: string } }) 
     <section className="container py-10">
       <div className="card">
         <h1 className="text-2xl font-semibold">{quote.title}</h1>
-        <p className="text-gray-500 text-sm">Rooms: {quote.rooms} • Labor per room: ${quote.laborRate} • Material tax: {quote.materialTax}%</p>
+        <p className="text-gray-500 text-sm">Rooms: {quote.rooms} • Labor per room: ${quote.laborRate.toString()} • Material tax: {quote.materialTax.toString()}%</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
