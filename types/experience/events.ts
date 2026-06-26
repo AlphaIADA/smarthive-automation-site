@@ -1,4 +1,5 @@
 import type { CameraPresetId, CameraVector } from "./camera";
+import type { ImmersiveInputSource, ImmersiveMode } from "./immersive-walk";
 import type { ExperiencePluginManifest } from "./plugins";
 
 export interface PerformanceSnapshot {
@@ -22,7 +23,8 @@ export interface ExperienceEventMap {
   ROOM_SELECTED: { readonly roomId: string | null };
   SCENE_CHANGED: { readonly sceneId: string };
   CAMERA_CHANGED: { readonly preset: CameraPresetId };
-  MODE_CHANGED: { readonly mode: "orbit" | "first-person" | "walk" };
+  CAMERA_FOCUS_REQUESTED: { readonly roomId: string; readonly position: CameraVector; readonly target: CameraVector };
+  MODE_CHANGED: { readonly mode: ImmersiveMode };
   SELECTION_CHANGED: { readonly kind: "none" | "room" | "device"; readonly id: string | null };
   PERFORMANCE_UPDATED: PerformanceSnapshot;
   PLUGIN_REGISTERED: { readonly plugin: ExperiencePluginManifest };
@@ -37,7 +39,7 @@ export interface ExperienceEventMap {
   LOADING_CHANGED: { readonly loading: boolean; readonly progress: number; readonly label: string };
   EFFECTS_CHANGED: { readonly enabled: boolean };
   AUDIO_CHANGED: { readonly muted: boolean };
-  INPUT_CHANGED: { readonly source: "pointer" | "keyboard" | "touch" };
+  INPUT_CHANGED: { readonly source: "pointer" | ImmersiveInputSource };
   PRESET_CHANGED: { readonly presetId: string };
   ENVIRONMENT_CHANGED: { readonly environmentId: string };
   MATERIAL_CHANGED: { readonly materialId: string };

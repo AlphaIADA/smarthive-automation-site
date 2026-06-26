@@ -5,6 +5,7 @@ import { getExperienceRuntime } from "@/lib/experience/runtime";
 import {
   useCameraStore,
   useExperienceStore,
+  useImmersiveWalkStore,
   usePerformanceStore,
   usePluginStore,
   useSelectionStore,
@@ -26,6 +27,19 @@ export function useExperienceRuntime() {
       }),
       eventBus.subscribe("CAMERA_CHANGED", ({ preset }) => {
         useCameraStore.getState().setPreset(preset);
+      }),
+      eventBus.subscribe("CAMERA_FOCUS_REQUESTED", ({ roomId, position, target }) => {
+        useCameraStore.getState().setFocus(roomId, position, target);
+      }),
+      eventBus.subscribe("MODE_CHANGED", ({ mode }) => {
+        useExperienceStore.getState().setMode(mode);
+        useImmersiveWalkStore.getState().setMode(mode);
+      }),
+      eventBus.subscribe("INPUT_CHANGED", ({ source }) => {
+        useImmersiveWalkStore.getState().setInputSource(source === "pointer" ? "mouse" : source);
+      }),
+      eventBus.subscribe("DEVICE_SELECTED", ({ deviceId }) => {
+        useSelectionStore.getState().select(deviceId ? "device" : "none", deviceId);
       }),
       eventBus.subscribe("SELECTION_CHANGED", ({ kind, id }) => {
         useSelectionStore.getState().select(kind, id);

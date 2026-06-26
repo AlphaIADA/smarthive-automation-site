@@ -2,7 +2,7 @@ import { BaseManager } from "@/lib/experience/base-manager";
 import type { ManagerContext } from "@/types/experience";
 
 export class EnvironmentManager extends BaseManager {
-  private environmentId = "foundation-sky";
+  private environmentId = "signature-villa-hdr-sky";
 
   constructor(context: ManagerContext) {
     super("EnvironmentManager", context);

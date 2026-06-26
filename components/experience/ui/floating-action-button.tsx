@@ -15,7 +15,7 @@ export function FloatingActionButton({ eventBus }: { eventBus: EventBus }) {
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ scale: 1.06 }}
       whileTap={{ scale: 0.96 }}
-      onClick={() => eventBus.emit("CAMERA_CHANGED", { preset: "default" })}
+      onClick={() => eventBus.emit("CAMERA_CHANGED", { preset: "front-arrival" })}
       className={`${styles.glass} absolute bottom-3 right-3 z-30 grid size-10 place-items-center rounded-2xl text-inherit md:right-5`}
     >
       <CameraIcon />

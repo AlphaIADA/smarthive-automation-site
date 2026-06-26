@@ -1,7 +1,7 @@
 import { BaseManager } from "@/lib/experience/base-manager";
-import type { ManagerContext } from "@/types/experience";
+import type { ImmersiveInputSource, ManagerContext } from "@/types/experience";
 
-type InputSource = "pointer" | "keyboard" | "touch";
+type InputSource = "pointer" | ImmersiveInputSource;
 
 export class InputManager extends BaseManager {
   private source: InputSource = "pointer";

@@ -48,7 +48,7 @@ export default function ExperienceShell() {
       <div className={styles.noise} />
       <TopToolbar eventBus={runtime.eventBus} />
       <LeftNavigation />
-      <RightInspector />
+      <RightInspector eventBus={runtime.eventBus} />
       <BottomStatusBar />
       <FloatingActionButton eventBus={runtime.eventBus} />
       <NotificationStack eventBus={runtime.eventBus} />

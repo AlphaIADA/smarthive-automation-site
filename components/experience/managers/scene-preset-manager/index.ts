@@ -2,7 +2,7 @@ import { BaseManager } from "@/lib/experience/base-manager";
 import type { ManagerContext } from "@/types/experience";
 
 export class ScenePresetManager extends BaseManager {
-  private presetId = "foundation-day";
+  private presetId = "signature-villa-day";
 
   constructor(context: ManagerContext) {
     super("ScenePresetManager", context);

@@ -28,10 +28,10 @@ export function TopToolbar({ eventBus }: { eventBus: EventBus }) {
       </Link>
       <div className="min-w-0 shrink-0 border-r border-white/10 pr-3">
         <div className="flex items-center gap-2">
-          <span className="truncate text-sm font-semibold tracking-tight">SmartHive SHE</span>
+          <span className="truncate text-sm font-semibold tracking-tight">SmartHive Signature Villa</span>
           <span className={`size-1.5 rounded-full ${status === "ready" ? "bg-emerald-300" : status === "degraded" ? "bg-amber-300" : "bg-sky-300 animate-pulse"}`} />
         </div>
-        <div className={`${styles.muted} hidden text-[10px] uppercase tracking-[0.18em] sm:block`}>Foundation runtime</div>
+        <div className={`${styles.muted} hidden text-[10px] uppercase tracking-[0.18em] sm:block`}>SmartHive OS Version 1.0</div>
       </div>
       <div className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <CameraIcon className={`${styles.muted} mx-1 shrink-0`} />

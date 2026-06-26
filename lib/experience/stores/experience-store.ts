@@ -1,10 +1,11 @@
 import { create } from "zustand";
+import type { ImmersiveMode } from "@/types/experience";
 
 export type ExperienceRuntimeStatus = "idle" | "loading" | "ready" | "degraded";
 
 interface ExperienceState {
   status: ExperienceRuntimeStatus;
-  mode: "orbit" | "first-person" | "walk";
+  mode: ImmersiveMode;
   managerCount: number;
   setStatus: (status: ExperienceRuntimeStatus) => void;
   setMode: (mode: ExperienceState["mode"]) => void;

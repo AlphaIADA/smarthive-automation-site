@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { readPersistedExperienceQuoteItems } from "@/lib/experience/assets/quote-bridge";
 
 type Device = {
   id: string;
@@ -23,6 +24,7 @@ export default function QuoteForm() {
   const [title, setTitle] = useState("4-Bedroom Smart Home");
   const [saving, setSaving] = useState(false);
   const [savedId, setSavedId] = useState<string | null>(null);
+  const [experienceImportCount, setExperienceImportCount] = useState(0);
 
   useEffect(() => {
     fetch("/api/devices").then(r => r.json()).then((list: Device[]) => {
@@ -32,6 +34,24 @@ export default function QuoteForm() {
         byCat[d.category].push(d);
       });
       setCatalog(byCat);
+      const experienceItems = readPersistedExperienceQuoteItems();
+      let importedCount = 0;
+      const importedQuantities: Record<string, number> = {};
+      experienceItems.forEach((item) => {
+        if (!item.catalogSlug) return;
+        const device = list.find((candidate) => candidate.slug === item.catalogSlug);
+        if (!device || item.quantity <= 0) return;
+        importedCount += item.quantity;
+        importedQuantities[device.id] = Math.max(importedQuantities[device.id] ?? 0, item.quantity);
+      });
+      setQuantities((current) => {
+        const next = { ...current };
+        Object.entries(importedQuantities).forEach(([deviceId, quantity]) => {
+          next[deviceId] = Math.max(next[deviceId] ?? 0, quantity);
+        });
+        return next;
+      });
+      setExperienceImportCount(importedCount);
     });
   }, []);
 
@@ -101,6 +121,12 @@ export default function QuoteForm() {
               <input type="number" min={0} value={materialTax} onChange={e=>setMaterialTax(Number(e.target.value||"0"))} />
             </div>
           </div>
+
+          {experienceImportCount > 0 && (
+            <div className="rounded-xl border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
+              Imported {experienceImportCount} catalog-backed item{experienceImportCount === 1 ? "" : "s"} from the SmartHive Experience hotspots. Quantities remain editable before saving.
+            </div>
+          )}
 
           {Object.entries(catalog).map(([cat, items]) => (
             <div key={cat}>

@@ -1,0 +1,43 @@
+import type { InteriorDoorSpec, InteriorWindowSpec } from "@/types/experience";
+
+export const INTERIOR_DOORS: readonly InteriorDoorSpec[] = [
+  { id: "pivot-main-entry-inner", type: "pivot", position: [-1.85, 1.72, 4.62], size: [2.35, 3.25, 0.16] },
+  { id: "sliding-family-patio", type: "sliding-glass", position: [1.65, 1.75, -4.62], size: [5.2, 2.85, 0.14] },
+  { id: "garage-connection-fire-door", type: "garage", position: [9.88, 1.42, 3.15], size: [1.12, 2.35, 0.18], rotation: [0, Math.PI / 2, 0] },
+  { id: "guest-bedroom-door", type: "bedroom", position: [-12.6, 1.35, -1.0], size: [0.95, 2.2, 0.14], rotation: [0, Math.PI / 2, 0] },
+  { id: "guest-bath-door", type: "bathroom", position: [-11.5, 1.28, -1.52], size: [0.82, 2.05, 0.12] },
+  { id: "powder-pocket-door", type: "pocket", position: [1.74, 1.26, 0.44], size: [0.84, 2.05, 0.12] },
+  { id: "prayer-hidden-door", type: "hidden", position: [-9.6, 1.32, -1.52], size: [0.9, 2.15, 0.1] },
+  { id: "cinema-hidden-door", type: "hidden", position: [-12.6, 1.28, 0.7], size: [0.96, 2.05, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "office-door", type: "bedroom", position: [-5.4, 1.32, -0.58], size: [0.9, 2.12, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "dirty-kitchen-pocket-door", type: "pocket", position: [6.15, 1.28, 2.9], size: [0.96, 2.12, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "pantry-pocket-door", type: "pocket", position: [5.15, 1.25, 2.0], size: [0.82, 2.0, 0.12] },
+  { id: "laundry-door", type: "hidden", position: [-6.25, 1.24, -2.6], size: [0.86, 2.0, 0.1], rotation: [0, Math.PI / 2, 0] },
+  { id: "master-bedroom-door", type: "bedroom", position: [-3.95, 5.78, -2.8], size: [0.98, 2.18, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "master-closet-pocket", type: "pocket", position: [-5.75, 5.75, -0.1], size: [0.9, 2.05, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "master-bath-pocket", type: "pocket", position: [-4.8, 5.75, -1.2], size: [0.86, 2.05, 0.12] },
+  { id: "bedroom-2-door", type: "bedroom", position: [-0.6, 5.72, -2.8], size: [0.92, 2.1, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "bedroom-3-door", type: "bedroom", position: [2.5, 5.72, -2.8], size: [0.92, 2.1, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "bedroom-4-door", type: "bedroom", position: [2.5, 5.72, 1.9], size: [0.92, 2.1, 0.12], rotation: [0, Math.PI / 2, 0] },
+  { id: "front-balcony-sliding", type: "sliding-glass", position: [-1.0, 5.75, 3.04], size: [4.8, 2.25, 0.12] },
+  { id: "rear-terrace-sliding", type: "sliding-glass", position: [0.4, 5.75, -5.2], size: [5.4, 2.25, 0.12] },
+] as const;
+
+export const INTERIOR_WINDOWS: readonly InteriorWindowSpec[] = [
+  { id: "foyer-skylight", type: "skylight", position: [-1.1, 7.62, 3.1], size: [3.4, 0.12, 1.5] },
+  { id: "living-curtain-wall-inner", type: "curtain-wall", position: [-6.4, 2.1, 4.42], size: [4.6, 2.9, 0.1] },
+  { id: "family-curtain-wall-inner", type: "curtain-wall", position: [1.8, 2.0, -4.35], size: [6.2, 2.65, 0.1] },
+  { id: "office-operable-window", type: "office", position: [-8.68, 1.95, -0.52], size: [0.1, 1.55, 1.7] },
+  { id: "guest-bedroom-operable-window", type: "operable", position: [-16.28, 1.95, -2.0], size: [0.1, 1.65, 2.1] },
+  { id: "guest-bath-window", type: "bathroom", position: [-11.45, 1.85, -3.92], size: [1.15, 0.82, 0.1] },
+  { id: "powder-room-window", type: "bathroom", position: [2.52, 1.75, 1.2], size: [0.1, 0.76, 0.95] },
+  { id: "gym-operable-window", type: "operable", position: [-10.8, 2.0, 2.37], size: [2.2, 1.65, 0.1] },
+  { id: "master-curtain-wall", type: "curtain-wall", position: [-6.0, 6.02, -4.48], size: [3.8, 2.2, 0.1] },
+  { id: "private-lounge-curtain-wall", type: "curtain-wall", position: [-2.3, 6.05, -4.48], size: [2.8, 2.15, 0.1] },
+  { id: "bedroom-2-operable", type: "operable", position: [0.95, 6.0, -4.48], size: [2.1, 1.7, 0.1] },
+  { id: "bedroom-3-operable", type: "operable", position: [4.35, 6.0, -4.48], size: [2.2, 1.7, 0.1] },
+  { id: "bedroom-4-operable", type: "operable", position: [6.28, 6.0, 1.9], size: [0.1, 1.65, 1.8] },
+  { id: "master-bath-window", type: "bathroom", position: [-4.85, 5.95, 1.02], size: [1.2, 0.82, 0.1] },
+  { id: "library-window", type: "office", position: [-6.9, 6.0, 3.08], size: [2.1, 1.5, 0.1] },
+  { id: "study-window", type: "office", position: [-4.25, 6.0, 3.08], size: [1.7, 1.45, 0.1] },
+] as const;

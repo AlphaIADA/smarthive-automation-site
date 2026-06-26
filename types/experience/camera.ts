@@ -1,13 +1,21 @@
 export type CameraPresetId =
-  | "default"
-  | "top"
-  | "front"
-  | "rear"
-  | "left"
-  | "right"
-  | "perspective"
-  | "first-person"
-  | "walk";
+  | "front-arrival"
+  | "driveway"
+  | "pool"
+  | "garden"
+  | "aerial"
+  | "front-door"
+  | "backyard"
+  | "terrace"
+  | "exterior-arrival"
+  | "living-room"
+  | "kitchen"
+  | "master-bedroom"
+  | "cinema"
+  | "gym"
+  | "pool-area"
+  | "security-overview"
+  | "full-house-top";
 
 export interface CameraVector {
   readonly x: number;

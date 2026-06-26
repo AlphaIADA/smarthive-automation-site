@@ -1,0 +1,85 @@
+export const INTERIOR_MATERIALS = {
+  marbleFloor: {
+    color: "#eee7da",
+    roughness: 0.24,
+    metalness: 0.02,
+  },
+  engineeredWood: {
+    color: "#9a6f45",
+    roughness: 0.46,
+    metalness: 0.02,
+  },
+  polishedConcrete: {
+    color: "#9da1a2",
+    roughness: 0.62,
+    metalness: 0.04,
+  },
+  bathroomTile: {
+    color: "#d9ddd8",
+    roughness: 0.32,
+    metalness: 0.03,
+  },
+  outdoorDecking: {
+    color: "#8a6a47",
+    roughness: 0.54,
+    metalness: 0.02,
+  },
+  acousticFloor: {
+    color: "#24272b",
+    roughness: 0.78,
+    metalness: 0.01,
+  },
+  partitionWall: {
+    color: "#eee8dc",
+    roughness: 0.68,
+    metalness: 0.01,
+    transparent: true,
+    opacity: 0.62,
+  },
+  ceiling: {
+    color: "#f6f2ea",
+    roughness: 0.72,
+    metalness: 0.01,
+    transparent: true,
+    opacity: 0.58,
+  },
+  acousticCeiling: {
+    color: "#1f2328",
+    roughness: 0.84,
+    metalness: 0.02,
+    transparent: true,
+    opacity: 0.76,
+  },
+  blackMetal: {
+    color: "#111820",
+    roughness: 0.34,
+    metalness: 0.62,
+  },
+  brushedMetal: {
+    color: "#bfc6c9",
+    roughness: 0.28,
+    metalness: 0.72,
+  },
+  doorWood: {
+    color: "#875b34",
+    roughness: 0.48,
+    metalness: 0.02,
+  },
+  glass: {
+    color: "#c5ecff",
+    roughness: 0.04,
+    metalness: 0,
+    transparent: true,
+    opacity: 0.36,
+    transmission: 0.3,
+    thickness: 0.12,
+    clearcoat: 1,
+    clearcoatRoughness: 0.05,
+  },
+  roomDetection: {
+    color: "#78d7ff",
+    transparent: true,
+    opacity: 0.028,
+    depthWrite: false,
+  },
+} as const;

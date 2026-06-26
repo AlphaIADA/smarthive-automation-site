@@ -2,7 +2,7 @@ import { BaseManager } from "@/lib/experience/base-manager";
 import type { ManagerContext } from "@/types/experience";
 
 export class MaterialManager extends BaseManager {
-  private activeMaterialId = "foundation-floor";
+  private activeMaterialId = "signature-villa-pbr";
 
   constructor(context: ManagerContext) {
     super("MaterialManager", context);

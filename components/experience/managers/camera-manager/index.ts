@@ -2,7 +2,7 @@ import { BaseManager } from "@/lib/experience/base-manager";
 import type { CameraPresetId, ManagerContext } from "@/types/experience";
 
 export class CameraManager extends BaseManager {
-  private preset: CameraPresetId = "default";
+  private preset: CameraPresetId = "front-arrival";
 
   constructor(context: ManagerContext) {
     super("CameraManager", context);

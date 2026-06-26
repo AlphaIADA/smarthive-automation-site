@@ -2,7 +2,7 @@ import { BaseManager } from "@/lib/experience/base-manager";
 import type { ManagerContext } from "@/types/experience";
 
 export class SceneManager extends BaseManager {
-  private sceneId = "foundation";
+  private sceneId = "signature-villa";
 
   constructor(context: ManagerContext) {
     super("SceneManager", context);

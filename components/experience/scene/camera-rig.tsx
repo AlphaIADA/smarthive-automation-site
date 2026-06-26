@@ -6,12 +6,14 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useSpring } from "@react-spring/three";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { getCameraPreset } from "@/lib/experience/camera-presets";
-import { useCameraStore, useSettingsStore } from "@/lib/experience/stores";
+import { useCameraStore, useImmersiveWalkStore, useSettingsStore } from "@/lib/experience/stores";
 
 export function CameraRig() {
   const controls = useRef<OrbitControlsImpl>(null);
   const animating = useRef(false);
   const presetId = useCameraStore((state) => state.preset);
+  const focus = useCameraStore((state) => state.focus);
+  const immersiveMode = useImmersiveWalkStore((state) => state.mode);
   const reducedMotion = useSettingsStore((state) => state.reducedMotion);
   const camera = useThree((state) => state.camera);
   const [spring, api] = useSpring(() => ({
@@ -25,25 +27,27 @@ export function CameraRig() {
 
   useEffect(() => {
     const preset = getCameraPreset(presetId);
-    if (!preset.enabled) return;
+    if (!focus && !preset.enabled) return;
+    const position = focus?.position ?? preset.position;
+    const target = focus?.target ?? preset.target;
     animating.current = true;
     void api.start({
-      px: preset.position.x,
-      py: preset.position.y,
-      pz: preset.position.z,
-      tx: preset.target.x,
-      ty: preset.target.y,
-      tz: preset.target.z,
+      px: position.x,
+      py: position.y,
+      pz: position.z,
+      tx: target.x,
+      ty: target.y,
+      tz: target.z,
       immediate: reducedMotion,
       config: { mass: 1, tension: 170, friction: 28 },
       onRest: () => {
         animating.current = false;
       },
     });
-  }, [api, presetId, reducedMotion]);
+  }, [api, focus, presetId, reducedMotion]);
 
   useFrame(() => {
-    if (!animating.current || !controls.current) return;
+    if (immersiveMode !== "orbit" || !animating.current || !controls.current) return;
     camera.position.set(spring.px.get(), spring.py.get(), spring.pz.get());
     controls.current.target.set(spring.tx.get(), spring.ty.get(), spring.tz.get());
     controls.current.update();
@@ -53,10 +57,11 @@ export function CameraRig() {
     <OrbitControls
       ref={controls}
       makeDefault
+      enabled={immersiveMode === "orbit"}
       enableDamping
       dampingFactor={0.08}
-      minDistance={4}
-      maxDistance={28}
+      minDistance={3.5}
+      maxDistance={72}
       maxPolarAngle={Math.PI / 2.04}
     />
   );

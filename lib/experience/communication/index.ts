@@ -1,0 +1,16 @@
+export {
+  COMMUNICATION_DISCOVERY_RESULTS,
+  COMMUNICATION_HEALTH_SNAPSHOT,
+  COMMUNICATION_VERSION_SUMMARY,
+  CommunicationLayerApi,
+  DEVICE_DRIVER_ENDPOINTS,
+  DiscoverDevices,
+  MonitorHealth,
+  PROTOCOL_PLUGINS,
+  PrepareLiveSync,
+  RegisterProtocolPlugin,
+  SUPPORTED_SMART_HOME_PROTOCOLS,
+  SimulateDevice,
+  SwitchMode,
+  UNIVERSAL_COMMUNICATION_REPORT,
+} from "./communication-layer";

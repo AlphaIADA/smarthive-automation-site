@@ -5,8 +5,8 @@ import styles from "@/styles/experience/experience.module.css";
 import { CompassIcon, LayersIcon, SettingsIcon, SparkIcon } from "./icons";
 
 const navigation = [
-  { label: "Explore", detail: "Orbit foundation", icon: CompassIcon, active: true },
-  { label: "Scene", detail: "Base environment", icon: LayersIcon, active: false },
+  { label: "Explore", detail: "OS 1.0", icon: CompassIcon, active: true },
+  { label: "Scene", detail: "Launch graph", icon: LayersIcon, active: false },
   { label: "Plugins", detail: "Registered plans", icon: SparkIcon, active: false },
   { label: "Settings", detail: "Runtime controls", icon: SettingsIcon, active: false },
 ] as const;
@@ -33,8 +33,8 @@ export function LeftNavigation() {
         ))}
       </div>
       <div className="absolute inset-x-3 bottom-3 rounded-2xl border border-white/10 bg-black/10 p-3">
-        <div className="text-xs font-medium">Foundation only</div>
-        <p className={`${styles.muted} mt-1 text-[10px] leading-relaxed`}>House, devices, automation, and AI remain intentionally unimplemented.</p>
+        <div className="text-xs font-medium">SmartHive OS 1.0</div>
+        <p className={`${styles.muted} mt-1 text-[10px] leading-relaxed`}>Website, Digital Twin, quotation, portals, business plans, AI, documentation, deployment, and supported segments are packaged for commercial launch.</p>
       </div>
     </motion.nav>
   );

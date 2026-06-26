@@ -9,7 +9,7 @@ export function BottomStatusBar() {
 
   return (
     <motion.footer initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className={`${styles.glass} absolute bottom-3 left-3 right-16 z-20 flex h-10 items-center gap-4 overflow-hidden rounded-2xl px-4 text-[10px] md:left-5 md:right-20`}>
-      <span className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-emerald-300" /><span className="font-medium">Runtime online</span></span>
+      <span className="flex items-center gap-2"><span className="size-1.5 rounded-full bg-emerald-300" /><span className="font-medium">SmartHive OS 1.0 ready</span></span>
       <span className={`${styles.muted} hidden sm:inline`}>FPS <b className="font-medium text-inherit">{snapshot.fps}</b></span>
       <span className={`${styles.muted} hidden sm:inline`}>Calls <b className="font-medium text-inherit">{snapshot.drawCalls}</b></span>
       <span className={`${styles.muted} hidden md:inline`}>Triangles <b className="font-medium text-inherit">{snapshot.triangles.toLocaleString()}</b></span>

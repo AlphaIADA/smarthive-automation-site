@@ -2,9 +2,10 @@
 
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
+import { ACESFilmicToneMapping, SRGBColorSpace } from "three";
 import type { EventBus } from "@/lib/experience/event-bus";
 import { useSettingsStore } from "@/lib/experience/stores";
-import { FoundationScene } from "@/components/experience/scene/foundation-scene";
+import { SignatureVillaScene } from "@/components/experience/scene/signature-villa-scene";
 import styles from "@/styles/experience/experience.module.css";
 
 export function ExperienceCanvas({ eventBus }: { eventBus: EventBus }) {
@@ -15,12 +16,17 @@ export function ExperienceCanvas({ eventBus }: { eventBus: EventBus }) {
       <Canvas
         shadows
         dpr={[1, pixelRatio]}
-        camera={{ position: [9, 7, 11], fov: 42, near: 0.1, far: 120 }}
+        camera={{ position: [-6, 6.8, 32], fov: 38, near: 0.1, far: 160 }}
         gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = ACESFilmicToneMapping;
+          gl.outputColorSpace = SRGBColorSpace;
+          gl.shadowMap.enabled = true;
+        }}
         fallback={<div className="grid h-full place-items-center bg-slate-950 text-white">WebGL is unavailable.</div>}
       >
         <Suspense fallback={null}>
-          <FoundationScene eventBus={eventBus} />
+          <SignatureVillaScene eventBus={eventBus} />
         </Suspense>
       </Canvas>
     </div>
